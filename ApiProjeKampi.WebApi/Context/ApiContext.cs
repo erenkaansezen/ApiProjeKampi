@@ -7,7 +7,8 @@ namespace ApiProjeKampi.WebApi.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=Sezen;initial catalog=ApiYummyDb;integrated security=true;TrustServerCertificate=true;");
+            optionsBuilder.UseSqlServer("Server=51.145.209.114,1453;Initial Catalog=ApiYummyDb;User ID=SZNAdmin;Password=Ern72szn;TrustServerCertificate=True;");
+
 
         }
 
