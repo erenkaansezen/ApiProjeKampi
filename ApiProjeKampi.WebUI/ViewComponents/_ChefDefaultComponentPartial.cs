@@ -1,15 +1,14 @@
-﻿using ApiProjeKampi.WebUI.Dtos.CategoryDtos;
-using ApiProjeKampi.WebUI.Dtos.ServiceDtos;
+﻿using ApiProjeKampi.WebUI.Dtos.ChefDtos;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
-namespace ApiProjeKampi.WebUI.ViewComponents.DefaultMenuComponent
+namespace ApiProjeKampi.WebUI.ViewComponents
 {
-    public class _MenuCategoryDefaultComponentPartial : ViewComponent
+    public class _ChefDefaultComponentPartial : ViewComponent
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public _MenuCategoryDefaultComponentPartial(IHttpClientFactory httpClientFactory)
+        public _ChefDefaultComponentPartial(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
@@ -17,16 +16,15 @@ namespace ApiProjeKampi.WebUI.ViewComponents.DefaultMenuComponent
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("http://localhost:80/api/Categories/");
+            var responseMessage = await client.GetAsync("http://localhost:80/api/Chefs/");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultChefDtos>>(jsonData);
                 return View(values);
             }
             return View();
         }
+
     }
-    
-    
 }
